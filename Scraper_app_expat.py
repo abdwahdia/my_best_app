@@ -12,7 +12,7 @@ import streamlit.components.v1 as components
 
 
 
-st.markdown("<h1 style='text-align: center; color: black;'>MY DATA SCRAPER APP</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: black;'>MY BEST DATA APP</h1>", unsafe_allow_html=True)
 
 st.markdown("""
 This app performs webscraping of data from dakar-auto over multiples pages. And we can also
@@ -310,6 +310,7 @@ else :
 
 
  
+
 
 
 
