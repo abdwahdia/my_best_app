@@ -49,28 +49,27 @@ def convert_df(df):
 def load(dataframe, title, key, key1) :
     st.markdown("""
     <style>
-    div[data-testid="stHorizontalBlock"] {
-        justify-content: center !important;
+    .stButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    div.stButton {
-        text-align: center !important;
-        display: flex !important;
-        justify-content: center !important;
-        margin: 0 auto !important;
-    }
-    div.stButton > button:first-child {
-        font-size: 12px !important;
-        height: 3em !important;
-        width: 25em !important;
-        margin: 0 auto !important;
-    }
-    .element-container {
-        display: flex !important;
-        justify-content: center !important;
+    .stButton > button {
+        font-size: 12px;
+        height: 3em;
+        width: 25em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
     </style>""", unsafe_allow_html=True)
     
+    # Ajouter un conteneur centré avec HTML
+    st.markdown('<div style="display: flex; justify-content: center;">', unsafe_allow_html=True)
+    
     if st.button(title, key=key1):
+        st.markdown('</div>', unsafe_allow_html=True)
+        
         st.subheader('Display data dimension')
         st.write('Data dimension: ' + str(dataframe.shape[0]) + ' rows and ' + str(dataframe.shape[1]) + ' columns.')
         st.dataframe(dataframe)
@@ -83,6 +82,8 @@ def load(dataframe, title, key, key1) :
             file_name='Data.csv',
             mime='text/csv',
             key = key)
+    else:
+        st.markdown('</div>', unsafe_allow_html=True)
 
 
 # def load(dataframe, title, key, key1) :
