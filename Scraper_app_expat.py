@@ -46,32 +46,34 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-def load(dataframe, title, key, key1) :
+def load(dataframe, title, key, key1):
+
+    # CSS pour centrer les boutons
     st.markdown("""
-    <style>
-    .stButton {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .stButton > button {
-        font-size: 12px;
-        height: 3em;
-        width: 25em;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    </style>""", unsafe_allow_html=True)
-    
-    # Ajouter un conteneur centré avec HTML
-    st.markdown('<div style="display: flex; justify-content: center;">', unsafe_allow_html=True)
-    
-    if st.button(title, key=key1):
-        st.markdown('</div>', unsafe_allow_html=True)
-        
+        <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .center-container button {
+            font-size: 14px;
+            width: 250px;
+            height: 50px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Conteneur centré
+    st.markdown('<div class="center-container">', unsafe_allow_html=True)
+
+    clicked = st.button(title, key=key1)
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    if clicked:
         st.subheader('Display data dimension')
-        st.write('Data dimension: ' + str(dataframe.shape[0]) + ' rows and ' + str(dataframe.shape[1]) + ' columns.')
+        st.write(f"Data dimension: {dataframe.shape[0]} rows and {dataframe.shape[1]} columns.")
         st.dataframe(dataframe)
 
         csv = convert_df(dataframe)
@@ -79,11 +81,10 @@ def load(dataframe, title, key, key1) :
         st.download_button(
             label="Download data as CSV",
             data=csv,
-            file_name='Data.csv',
-            mime='text/csv',
-            key = key)
-    else:
-        st.markdown('</div>', unsafe_allow_html=True)
+            file_name="data.csv",
+            mime="text/csv",
+            key=key
+        )
 
 
 # def load(dataframe, title, key, key1) :
@@ -314,6 +315,7 @@ else :
 
 
  
+
 
 
 
