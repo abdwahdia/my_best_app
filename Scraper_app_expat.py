@@ -46,44 +46,24 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-def load(dataframe, title, key, key1):
-    st.markdown("""
-    <style>
-    /* ciblage du bouton incorporé par Streamlit */
-    div[data-testid="stVerticalBlock"] .stButton > button, 
-    .css-1emrehy > button { 
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: block;
-        width: 260px;
-        height: 44px;
-    }
-    /* centrer download_button */
-    div[data-testid="stDownloadButton"] > button {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        display: block;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+def load(dataframe, title, key, key1) :
+    # Créer 3 colonnes avec celle du milieu plus large
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col2:
+        if st.button(title, key1):
+            st.subheader('Display data dimension')
+            st.write('Data dimension: ' + str(dataframe.shape[0]) + ' rows and ' + str(dataframe.shape[1]) + ' columns.')
+            st.dataframe(dataframe)
 
-    clicked = st.button(title, key=key1)
+            csv = convert_df(dataframe)
 
-    if clicked:
-        st.subheader('Display data dimension')
-        st.write(f"Data dimension: {dataframe.shape[0]} rows and {dataframe.shape[1]} columns.")
-        st.dataframe(dataframe)
-
-        csv = convert_df(dataframe)
-        st.download_button(
-            label="Download data as CSV",
-            data=csv,
-            file_name='Data.csv',
-            mime='text/csv',
-            key=key
-        )
-
-
+            st.download_button(
+                label="Download data as CSV",
+                data=csv,
+                file_name='Data.csv',
+                mime='text/csv',
+                key = key)
 # def load(dataframe, title, key, key1) :
     
 #     st.markdown("""
@@ -312,6 +292,7 @@ else :
 
 
  
+
 
 
 
