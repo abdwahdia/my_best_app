@@ -47,29 +47,27 @@ def convert_df(df):
 
 
 def load(dataframe, title, key, key1):
-
-    # CSS pour centrer les boutons
     st.markdown("""
-        <style>
-        .center-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .center-container button {
-            font-size: 14px;
-            width: 250px;
-            height: 50px;
-        }
-        </style>
+    <style>
+    /* ciblage du bouton incorporé par Streamlit */
+    div[data-testid="stVerticalBlock"] .stButton > button, 
+    .css-1emrehy > button { 
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block;
+        width: 260px;
+        height: 44px;
+    }
+    /* centrer download_button */
+    div[data-testid="stDownloadButton"] > button {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block;
+    }
+    </style>
     """, unsafe_allow_html=True)
 
-    # Conteneur centré
-    st.markdown('<div class="center-container">', unsafe_allow_html=True)
-
     clicked = st.button(title, key=key1)
-
-    st.markdown('</div>', unsafe_allow_html=True)
 
     if clicked:
         st.subheader('Display data dimension')
@@ -77,12 +75,11 @@ def load(dataframe, title, key, key1):
         st.dataframe(dataframe)
 
         csv = convert_df(dataframe)
-
         st.download_button(
             label="Download data as CSV",
             data=csv,
-            file_name="data.csv",
-            mime="text/csv",
+            file_name='Data.csv',
+            mime='text/csv',
             key=key
         )
 
@@ -315,6 +312,7 @@ else :
 
 
  
+
 
 
 
