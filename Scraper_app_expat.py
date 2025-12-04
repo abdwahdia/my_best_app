@@ -211,7 +211,7 @@ def load_motocycle_data(mul_page):
 
 st.sidebar.header('User Input Features')
 Pages = st.sidebar.selectbox('Pages indexes', list([int(p) for p in np.arange(2, 600)]))
-Choices = st.sidebar.selectbox('Options', ['Scrape data using beautifulSoup', 'Download scraped data',  'Fill the form', 'Dashbord of the data'])
+Choices = st.sidebar.selectbox('Options', ['Scrape data using beautifulSoup', 'Download scraped data', 'Dashbord of the data', 'Evaluate the App'])
 
 
 
@@ -281,9 +281,27 @@ elif  Choices == 'Dashbord of the data':
 
 
 else :
-    components.html("""
-    <iframe src="https://ee.kobotoolbox.org/i/y3pfGxMz" width="800" height="1100"></iframe>
-    """,height=1100,width=800)
+    # components.html("""
+    # <iframe src="https://ee.kobotoolbox.org/i/y3pfGxMz" width="800" height="1100"></iframe>
+    # """,height=1100,width=800)
+    st.markdown("<h3 style='text-align: center;'>Give your Feedback</h3>", unsafe_allow_html=True)
+
+    # centrer les deux boutons
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if st.button("Kobo Evaluation Form"):
+            st.markdown(
+                '<meta http-equiv="refresh" content="0; url=https://ee.kobotoolbox.org/i/y3pfGxMz">',
+                unsafe_allow_html=True
+            )
+
+    with col2:
+        if st.button("Google Forms Evaluation"):
+            st.markdown(
+                '<meta http-equiv="refresh" content="0; url=https://docs.google.com/forms/d/e/XXXXXXXXX/viewform?usp=sf_link">',
+                unsafe_allow_html=True
+            )
 
 
 
@@ -292,6 +310,7 @@ else :
 
 
  
+
 
 
 
