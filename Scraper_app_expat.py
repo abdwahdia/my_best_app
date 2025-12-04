@@ -46,24 +46,35 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 def load(dataframe, title, key, key1) :
-    # Créer 3 colonnes avec celle du milieu plus large
-    col1, col2, col3 = st.columns([1, 2, 1])
+    # Centrer le conteneur du bouton
+    st.markdown("""
+    <style>
+    div.stButton {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    div.stButton > button {
+        font-size: 12px;
+        height: 3em;
+        width: 25em;
+    }
+    </style>""", unsafe_allow_html=True)
     
-    with col2:
-        if st.button(title, key1):
-            st.subheader('Display data dimension')
-            st.write('Data dimension: ' + str(dataframe.shape[0]) + ' rows and ' + str(dataframe.shape[1]) + ' columns.')
-            st.dataframe(dataframe)
+    if st.button(title, key1):
+        st.subheader('Display data dimension')
+        st.write('Data dimension: ' + str(dataframe.shape[0]) + ' rows and ' + str(dataframe.shape[1]) + ' columns.')
+        st.dataframe(dataframe)
 
-            csv = convert_df(dataframe)
+        csv = convert_df(dataframe)
 
-            st.download_button(
-                label="Download data as CSV",
-                data=csv,
-                file_name='Data.csv',
-                mime='text/csv',
-                key = key)
-
+        st.download_button(
+            label="Download data as CSV",
+            data=csv,
+            file_name='Data.csv',
+            mime='text/csv',
+            key = key)
 # def load(dataframe, title, key, key1) :
     
 #     st.markdown("""
@@ -292,6 +303,7 @@ else :
 
 
  
+
 
 
 
