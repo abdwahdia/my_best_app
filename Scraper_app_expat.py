@@ -50,7 +50,13 @@ def load(dataframe, title, key, key1) :
     <style>
     div.stButton {text-align:center}
     </style>""", unsafe_allow_html=True)
-
+    # define some styles rely to the box
+    st.markdown('''<style> .stButton>button {
+        font-size: 12px;
+        height: 3em;
+        width: 25em;
+    }</style>''', unsafe_allow_html=True)
+    
     if st.button(title,key1):
         # st.header(title)
 
@@ -185,7 +191,7 @@ def load_motocycle_data(mul_page):
 
 st.sidebar.header('User Input Features')
 Pages = st.sidebar.selectbox('Pages indexes', list([int(p) for p in np.arange(2, 600)]))
-Choices = st.sidebar.selectbox('Options', ['Scrape data using beautifulSoup', 'Download scraped data',  'Fill the form'])
+Choices = st.sidebar.selectbox('Options', ['Scrape data using beautifulSoup', 'Download scraped data',  'Fill the form', 'Dashbord of the data'])
 
 
 
@@ -208,49 +214,49 @@ elif Choices == 'Download scraped data':
     load(Vehicles, 'Vehicles data', '1', '101')
     load(Motocycles, 'Motocycles data', '2', '102')
 
-# elif  Choices == 'Dashbord of the data': 
-#     df1 = pd.read_csv('vehicles_clean_data.csv')
-#     df2 = pd.read_csv('motocycles_clean_data.csv')
+elif  Choices == 'Dashbord of the data': 
+    df1 = pd.read_csv('vehicles_clean_data.csv')
+    df2 = pd.read_csv('motocycles_clean_data.csv')
 
-#     col1, col2= st.columns(2)
+    col1, col2= st.columns(2)
 
-#     with col1:
-#         plot1= plt.figure(figsize=(11,7))
-#         color = (0.2, # redness
-#                  0.4, # greenness
-#                  0.2, # blueness
-#                  0.6 # transparency
-#                  )
-#         plt.bar(df1.marque.value_counts()[:5].index, df1.marque.value_counts()[:5].values, color = color)
-#         plt.title('cinq marque de vehicules les plus vendus')
-#         plt.xlabel('marque')
-#         st.pyplot(plot1)
+    with col1:
+        plot1= plt.figure(figsize=(11,7))
+        color = (0.2, # redness
+                 0.4, # greenness
+                 0.2, # blueness
+                 0.6 # transparency
+                 )
+        plt.bar(df1.marque.value_counts()[:5].index, df1.marque.value_counts()[:5].values, color = color)
+        plt.title('cinq marque de vehicules les plus vendus')
+        plt.xlabel('marque')
+        st.pyplot(plot1)
 
-#     with col2:
-#         plot2 = plt.figure(figsize=(11,7))
-#         color = (0.5, # redness
-#          0.7, # greenness
-#          0.9, # blueness
-#          0.6 # transparency
-#          )
-#         plt.bar(df2.marque.value_counts()[:5].index, df2.marque.value_counts()[:5].values, color = color)
-#         plt.title('cinq marque de vehicules les plus vendus')
-#         plt.xlabel('marque')
-#         st.pyplot(plot2)
+    with col2:
+        plot2 = plt.figure(figsize=(11,7))
+        color = (0.5, # redness
+         0.7, # greenness
+         0.9, # blueness
+         0.6 # transparency
+         )
+        plt.bar(df2.marque.value_counts()[:5].index, df2.marque.value_counts()[:5].values, color = color)
+        plt.title('cinq marque de vehicules les plus vendus')
+        plt.xlabel('marque')
+        st.pyplot(plot2)
     
-#     col3, col4= st.columns(2)
+    col3, col4= st.columns(2)
 
-#     with col3:
-#         plot3= plt.figure(figsize=(11,7))
-#         sns.lineplot(data=df1, x="annee", y="prix", hue="etat")
-#         plt.title('Variation du prix suivant les années des catégories de vehicules')
-#         st.pyplot(plot3)
+    with col3:
+        plot3= plt.figure(figsize=(11,7))
+        sns.lineplot(data=df1, x="annee", y="prix", hue="etat")
+        plt.title('Variation du prix suivant les années des catégories de vehicules')
+        st.pyplot(plot3)
 
-#     with col4:
-#         plot4 = plt.figure(figsize=(11,7))
-#         sns.lineplot(data=df2, x="annee", y="prix", hue="etat")
-#         plt.title('Variation du prix suivant les années des catégories de motos')
-#         st.pyplot(plot4)
+    with col4:
+        plot4 = plt.figure(figsize=(11,7))
+        sns.lineplot(data=df2, x="annee", y="prix", hue="etat")
+        plt.title('Variation du prix suivant les années des catégories de motos')
+        st.pyplot(plot4)
 
 
 
@@ -266,5 +272,6 @@ else :
 
 
  
+
 
 
