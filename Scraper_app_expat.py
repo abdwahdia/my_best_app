@@ -45,24 +45,32 @@ def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return df.to_csv().encode('utf-8')
 
+
 def load(dataframe, title, key, key1) :
-    # Centrer le conteneur du bouton
     st.markdown("""
     <style>
-    div.stButton {
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    div[data-testid="stHorizontalBlock"] {
+        justify-content: center !important;
     }
-    div.stButton > button {
-        font-size: 12px;
-        height: 3em;
-        width: 25em;
+    div.stButton {
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+    }
+    div.stButton > button:first-child {
+        font-size: 12px !important;
+        height: 3em !important;
+        width: 25em !important;
+        margin: 0 auto !important;
+    }
+    .element-container {
+        display: flex !important;
+        justify-content: center !important;
     }
     </style>""", unsafe_allow_html=True)
     
-    if st.button(title, key1):
+    if st.button(title, key=key1):
         st.subheader('Display data dimension')
         st.write('Data dimension: ' + str(dataframe.shape[0]) + ' rows and ' + str(dataframe.shape[1]) + ' columns.')
         st.dataframe(dataframe)
@@ -75,6 +83,8 @@ def load(dataframe, title, key, key1) :
             file_name='Data.csv',
             mime='text/csv',
             key = key)
+
+
 # def load(dataframe, title, key, key1) :
     
 #     st.markdown("""
@@ -303,6 +313,7 @@ else :
 
 
  
+
 
 
 
