@@ -46,16 +46,34 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 def load(dataframe, title, key, key1) :
+    # Centrer le conteneur du bouton
     st.markdown("""
     <style>
-    div.stButton {text-align:center}
-    </style>""", unsafe_allow_html=True)
-    # define some styles rely to the box
-    st.markdown('''<style> .stButton>button {
+    div.stButton {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    div.stButton > button {
         font-size: 12px;
         height: 3em;
         width: 25em;
-    }</style>''', unsafe_allow_html=True)
+    }
+    </style>""", unsafe_allow_html=True)
+
+
+    
+    # st.markdown("""
+    # <style>
+    # div.stButton {text-align:center}
+    # </style>""", unsafe_allow_html=True)
+    # # define some styles rely to the box
+    # st.markdown('''<style> .stButton>button {
+    #     font-size: 12px;
+    #     height: 3em;
+    #     width: 25em;
+    # }</style>''', unsafe_allow_html=True)
     
     if st.button(title,key1):
         # st.header(title)
@@ -272,6 +290,7 @@ else :
 
 
  
+
 
 
 
